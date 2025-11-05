@@ -1,0 +1,81 @@
+## Ignore Visual Studio temporary files, build results, and user-specific files
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Tt]emp/
+[Tt]est[Rr]esult*/
+
+# Visual Studio cache/options directory
+.vs/
+
+# Visual Studio Code settings
+.vscode/
+
+# Rider / JetBrains IDE
+.idea/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# NuGet packages
+*.nupkg
+# Uncomment if you have local NuGet packages directory
+# packages/
+# NuGet package restore folder
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+# Microsoft Azure Web Apps publish settings
+*.Publish.xml
+*.azurePubxml
+
+# Publish output
+**/publish/
+*.pubxml
+*.pubxml.user
+
+# Generated files
+GeneratedCode/
+
+# Backup & report files from build
+*.bak
+*.Backup
+*.tmp
+*.log
+*.tlog
+
+# Environment files
+.env
+appsettings.*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Recycle bin used on file shares
+$RECYCLE.BIN/
+
+# Others
+*.dbmdl
+*.pdb
+*.cache
