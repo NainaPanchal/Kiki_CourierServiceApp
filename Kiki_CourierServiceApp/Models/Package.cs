@@ -10,6 +10,7 @@ namespace Kiki_CourierServiceApp.Models
         public string OfferCode { get; set; } = string.Empty;
         public double Discount { get; set; }
         public double TotalCost { get; set; }
+        //public string DiscountUnit { get; set; } = string.Empty;
         public double EstimatedDeliveryTime { get; set; } = -1;
     }
 }
