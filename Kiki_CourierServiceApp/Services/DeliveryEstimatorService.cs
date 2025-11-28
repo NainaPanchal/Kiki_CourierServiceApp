@@ -42,12 +42,11 @@ namespace Kiki_CourierServiceApp.Services
                 // Assign delivery time per package
                 foreach (var pkg in shipment)
                 {
-                    pkg.EstimatedDeliveryTime = Math.Round((vehicle.AvailableAt + (pkg.Distance / vehicle.MaxSpeed)) , 2);
+                    pkg.EstimatedDeliveryTime = Math.Round((vehicle.AvailableAt + (pkg.Distance / vehicle.MaxSpeed)) , 2,MidpointRounding.ToZero);
                 }
 
                 // Update vehicle availability after returning from farthest
-                vehicle.AvailableAt += Math.Round(2 * (maxDistance / vehicle.MaxSpeed), 2);
-
+                vehicle.AvailableAt += Math.Round(2 * (maxDistance / vehicle.MaxSpeed), 2, MidpointRounding.ToZero);
                 // Remove delivered packages
                 foreach (var pkg in shipment)
                     remaining.Remove(pkg);

@@ -6,7 +6,7 @@ How to use:
         1) unzip Kiki_CourierServiceApp.zip
         2) dotnet build
         3) dotnet run --project Kiki_CourierServiceApp
-        #  paste contents of sample input from below when prompted and then press enter
+          paste contents of sample input from below when prompted and then press enter
         4) dotnet test
 
 Sample Input :
