@@ -47,8 +47,24 @@ dotnet run --project Kiki_CourierServiceApp
 ### Or else you can run the project from menu > Run > Start debugging/ Run without debugging or F5.
 
 
-Paste contents of sample input from below when prompted and then press enter: 
+Paste contents of sample input from below when prompted, select menu option and then press enter: 
 
+### DELIVERY COST..................
+
+Sample Input
+
+100 3
+PKG1 5 5 OFR001
+PKG2 15 5 OFR002
+PKG3 10 100 OFR003
+
+OutPut: PackageID Discount TotalCost: 
+
+PKG1 0 175
+PKG2 0 275
+PKG3 35 665
+
+### DELIVERY SCHEDULER.......................
 Sample Input : 
 format >>
 <base_delivery_cost> <number_of_packages>

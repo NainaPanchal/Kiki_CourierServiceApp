@@ -19,15 +19,28 @@ namespace Kiki_CourierServiceApp.Services
             _deliveryService = deliveryService;
         }
 
-        public void Run()
+        public void run(int selection_option)
         {
-            ParseInput();
-            _costService.ComputeCostWithOffers(Packages, BaseDeliveryCost);
-            _deliveryService.EstimateDeliveryTimes(Packages, Vehicles);
-            PrintResults();
+            ParseInput(selection_option);
+            switch (selection_option)
+            {
+                case 0:
+                    _costService.ComputeCostWithOffers(Packages, BaseDeliveryCost);
+                     PrintDeliveryCost();
+                    break;
+                case 1:
+                     _costService.ComputeCostWithOffers(Packages, BaseDeliveryCost);
+                     _deliveryService.EstimateDeliveryTimes(Packages, Vehicles);
+                    PrintDeliveryScheduler();
+                    break;
+                default:
+                    Console.WriteLine("Exiting application.");
+                    break;
+            }  
         }
+         
 
-        private void ParseInput()
+        private void ParseInput(int selection_option)
         {
             var firstLine = Console.ReadLine();
 
@@ -39,7 +52,8 @@ namespace Kiki_CourierServiceApp.Services
             var firstParts = firstLine.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
             BaseDeliveryCost = double.Parse(firstParts[0]);
             int pkgCount = int.Parse(firstParts[1]);
-#region  Input Validations
+
+        #region  Input Validations
     
 if (BaseDeliveryCost < 0)
 {
@@ -52,6 +66,8 @@ if (pkgCount <= 0)
     return;
 }
 
+Packages.Clear();
+
 #endregion
             for (int i = 0; i < pkgCount; i++)
             {
@@ -60,7 +76,7 @@ if (pkgCount <= 0)
                 var parts = line.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
 
-#region Input Validations   
+#region package Input Validations   
 
                 if (parts == null || parts.Length < 4)
                 {
@@ -81,7 +97,7 @@ if (pkgCount <= 0)
                     return;
                 }
 #endregion
-
+               
                Packages.Add(new Package
                 {
                     Id = parts[0],
@@ -90,7 +106,8 @@ if (pkgCount <= 0)
                     OfferCode = parts[3]
                 });
             }
-
+if (selection_option == 1) // Only parse vehicles for delivery scheduler
+{
             var vehicleLine = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(vehicleLine)) throw new ArgumentException("Expected vehicle line.");
             var vparts = vehicleLine.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
@@ -99,7 +116,8 @@ if (pkgCount <= 0)
             int vehicleCount = int.Parse(vparts[0]);
             double maxSpeed = double.Parse(vparts[1]);
             double maxWeight = double.Parse(vparts[2]);
-#region Input Validations
+            
+        #region vehicle Input Validations  
 
  if (vehicleCount <= 0)
 {
@@ -122,10 +140,20 @@ if (maxWeight <= 0)
             {
                 Vehicles.Add(new Vehicle { Id = i + 1, MaxSpeed = maxSpeed, MaxCarriableWeight = maxWeight });
             }
-        }
-
-        private void PrintResults()
+        }       
+}
+        private void PrintDeliveryCost()
         {
+            Console.WriteLine("==========================================");
+             Console.WriteLine("OutPut: PackageID Discount TotalCost: \n");
+            foreach (var pkg in Packages)
+                Console.WriteLine($"{pkg.Id} {pkg.Discount:0} {pkg.TotalCost:0}");
+    
+        }
+        private void PrintDeliveryScheduler()
+        {
+             Console.WriteLine("==========================================");
+            Console.WriteLine("OutPut: PackageID Discount TotalCost EstimatedDeliveryTime \n");
             foreach (var pkg in Packages)
             {
                 var timeStr = pkg.EstimatedDeliveryTime < 0 ? "NA" : Math.Round(pkg.EstimatedDeliveryTime, 2).ToString("0.00");
