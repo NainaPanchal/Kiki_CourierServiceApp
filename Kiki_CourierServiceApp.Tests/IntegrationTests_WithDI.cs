@@ -13,8 +13,9 @@ namespace Kiki_CourierServiceApp.Tests
         public IntegrationTests_WithDI()
         {
             var serviceCollection = new ServiceCollection()
-                .AddSingleton<CostEstimationService>()
-                .AddSingleton<DeliveryEstimatorService>()
+                .AddSingleton<IOffersService, InMemoryOfferProvider>()
+                .AddSingleton<DeliveryCostService>()
+                .AddSingleton<DeliverySchedulerService>()
                 .AddSingleton<CourierServiceApp>()
                 .BuildServiceProvider();
 
@@ -24,8 +25,8 @@ namespace Kiki_CourierServiceApp.Tests
         [Fact]
         public void Should_Inject_Services_And_Run_Combined_Logic()
         {
-            var costService = _serviceProvider.GetRequiredService<CostEstimationService>();
-            var deliveryService = _serviceProvider.GetRequiredService<DeliveryEstimatorService>();
+            var costService = _serviceProvider.GetRequiredService<DeliveryCostService>();
+            var deliveryService = _serviceProvider.GetRequiredService<DeliverySchedulerService>();
 
             var packages = new List<Package>
             {

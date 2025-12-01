@@ -5,9 +5,9 @@ using Xunit;
 
 namespace Kiki_CourierServiceApp.Tests
 {
-    public class DeliveryEstimatorServiceTests
+    public class DeliverySchedulerServiceTests
     {
-        private readonly DeliveryEstimatorService _service = new();
+        private readonly DeliverySchedulerService _service = new();
 
         [Fact]
         public void Should_Assign_Delivery_Times_To_All_Valid_Packages()

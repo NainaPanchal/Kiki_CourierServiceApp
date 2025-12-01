@@ -5,10 +5,9 @@ using Xunit;
 
 namespace Kiki_CourierServiceApp.Tests
 {
-    public class CostEstimationServiceTests
-    {
-        private readonly CostEstimationService _service = new();
-
+    public class DeliveryCostServiceTests
+    { 
+        private readonly DeliveryCostService _service =  new DeliveryCostService(new InMemoryOfferProvider());
         [Fact]
         public void Should_Apply_Valid_Offer_Discount()
         {

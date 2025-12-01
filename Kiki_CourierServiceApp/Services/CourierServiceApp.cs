@@ -6,14 +6,14 @@ namespace Kiki_CourierServiceApp.Services
 {
     public class CourierServiceApp
     {
-        private readonly CostEstimationService _costService;
-        private readonly DeliveryEstimatorService _deliveryService;
+        private readonly DeliveryCostService _costService;
+        private readonly DeliverySchedulerService _deliveryService;
 
         private double BaseDeliveryCost;
         private readonly List<Package> Packages = new();
         private readonly List<Vehicle> Vehicles = new();
 
-        public CourierServiceApp(CostEstimationService costService, DeliveryEstimatorService deliveryService)
+        public CourierServiceApp(DeliveryCostService costService, DeliverySchedulerService deliveryService)
         {
             _costService = costService;
             _deliveryService = deliveryService;

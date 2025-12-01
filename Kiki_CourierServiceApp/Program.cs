@@ -9,8 +9,9 @@ namespace Kiki_CourierServiceApp
         static void Main(string[] args)
         {
             var serviceProvider = new ServiceCollection()
-                .AddSingleton<CostEstimationService>()
-                .AddSingleton<DeliveryEstimatorService>()
+                .AddSingleton<IOffersService, InMemoryOfferProvider>()
+                .AddSingleton<DeliveryCostService>()
+                .AddSingleton<DeliverySchedulerService>()
                 .AddSingleton<CourierServiceApp>()
                 .BuildServiceProvider();
 

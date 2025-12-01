@@ -4,17 +4,14 @@ using Kiki_CourierServiceApp.Models;
 
 namespace Kiki_CourierServiceApp.Services
 {
-    public class CostEstimationService
-    {
-        private readonly List<Offer> _offers = new();
+    public class DeliveryCostService
+    { 
+        private readonly List<Offer> _offers;
 
-        public CostEstimationService()
+        public DeliveryCostService(IOffersService offersService)
         {
-            _offers.Add(new Offer { Code = "OFR001", DiscountPercent = 10, MinWeight = 70, MaxWeight = 200, MinDistance = 0, MaxDistance = 200 });
-            _offers.Add(new Offer { Code = "OFR002", DiscountPercent = 7, MinWeight = 100, MaxWeight = 250, MinDistance = 50, MaxDistance = 150 });
-            _offers.Add(new Offer { Code = "OFR003", DiscountPercent = 5, MinWeight = 10, MaxWeight = 150, MinDistance = 50, MaxDistance = 250 });
+            _offers = offersService.GetOffers();
         }
-
         public void ComputeCostWithOffers(List<Package> packages, double baseDeliveryCost)
         {
             if (packages == null || packages.Count == 0) return;
