@@ -9,11 +9,11 @@ namespace Kiki_CourierServiceApp.Tests
     { 
       private readonly DeliveryCostService _service;
 
-public DeliveryCostServiceTests()
-{
-    IOffersService offersService = new InMemoryOfferProvider();
-    _service = new DeliveryCostService(offersService);
-}
+        public DeliveryCostServiceTests()
+        {
+            IOffersService offersService = new InMemoryOfferProvider();
+            _service = new DeliveryCostService(offersService);
+        }
       
         [Fact]
         public void Should_Apply_Valid_Offer_Discount()
