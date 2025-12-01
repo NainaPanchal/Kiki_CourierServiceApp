@@ -7,7 +7,14 @@ namespace Kiki_CourierServiceApp.Tests
 {
     public class DeliveryCostServiceTests
     { 
-        private readonly DeliveryCostService _service =  new DeliveryCostService(new InMemoryOfferProvider());
+      private readonly DeliveryCostService _service;
+
+public DeliveryCostServiceTests()
+{
+    IOffersService offersService = new InMemoryOfferProvider();
+    _service = new DeliveryCostService(offersService);
+}
+      
         [Fact]
         public void Should_Apply_Valid_Offer_Discount()
         {
