@@ -72,7 +72,7 @@ Packages.Clear();
             for (int i = 0; i < pkgCount; i++)
             {
                 var line = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(line)) throw new ArgumentException($"Expected package line {i+1}."); 
+                if (string.IsNullOrWhiteSpace(line)) { Console.WriteLine($"Expected package line {i+1}."); return; }
                 var parts = line.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
 
@@ -109,9 +109,9 @@ Packages.Clear();
 if (selection_option == 1) // Only parse vehicles for delivery scheduler
 {
             var vehicleLine = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(vehicleLine)) throw new ArgumentException("Expected vehicle line.");
-            var vparts = vehicleLine.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            if (vparts.Length < 3) throw new ArgumentException("Vehicle line must contain number_of_vehicles max_speed max_carriable_weight.");
+            if (string.IsNullOrWhiteSpace(vehicleLine)) { Console.WriteLine("Expected vehicle line."); return; }
+            var vparts = vehicleLine?.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (vparts?.Length < 3) { Console.WriteLine("Vehicle line must contain number_of_vehicles max_speed max_carriable_weight."); return; }
 
             int vehicleCount = int.Parse(vparts[0]);
             double maxSpeed = double.Parse(vparts[1]);
